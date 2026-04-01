@@ -380,6 +380,7 @@ static pid_t spawn_worker_at_slot(int slot) {
     return pid;
 }
 
+// Starts all worker processes at server startup and tracks their PIDs.
 static void spawn_initial_workers(void) {
     int i;
     for (i = 0; i < worker_count; ++i) {
@@ -390,6 +391,7 @@ static void spawn_initial_workers(void) {
     }
 }
 
+// Reaps dead worker processes and respawns new ones to keep the worker pool alive.
 static void respawn_dead_workers(void) {
     int status = 0;
     pid_t pid;
@@ -410,6 +412,7 @@ static void respawn_dead_workers(void) {
     sigchld_seen = 0;
 }
 
+// Sends SIGTERM to all workers, waits for them to exit, and cleans up their PIDs.
 static void terminate_workers(void) {
     int i;
     for (i = 0; i < worker_count; ++i) {
@@ -425,6 +428,7 @@ static void terminate_workers(void) {
     }
 }
 
+//./server_app -p <port> -w <workers> -b <backlog> -l <library_path>
 static void parse_args(int argc, char **argv) {
     int opt;
 
