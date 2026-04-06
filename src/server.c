@@ -271,6 +271,8 @@ static void worker_loop(int shared_listen_fd) {
     void (*handle_request)(int, const char *) = NULL;
     time_t last_modified = 0;
 
+    signal(SIGPIPE, SIG_IGN);
+
     for (;;) {
         int client_fd = accept(shared_listen_fd, NULL, NULL);
         if (client_fd < 0) {
