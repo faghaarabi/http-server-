@@ -207,7 +207,7 @@ void handle_request(int client_fd, const char *request) {
 
     if (strcmp(method, "POST") == 0) {
         const char *body = find_body(request);
-        const char *msg = "POST data stored\n";
+        const char *msg = "HOT RELOAD WORKED VERSION 333.\n";
 
         if (!body) {
             send_error(client_fd, 400, "Bad Request", "400 Bad Request\n", 0);

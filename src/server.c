@@ -328,7 +328,7 @@ static void worker_loop(int shared_listen_fd) {
                 handle = new_handle;
                 handle_request = new_handle_request;
                 last_modified = st.st_mtime;
-                fprintf(stderr, "[%ld] Reloaded shared library %s\n", (long)getpid(), library_path);
+                fprintf(stderr, "[%ld] Reloaded [UPDATED AFTER MAKING ME ANGRY] shared library %s\n", (long)getpid(), library_path);
             }
         }
 
@@ -403,10 +403,14 @@ static void respawn_dead_workers(void) {
         if (slot >= 0) {
             worker_pids[slot] = 0;
             if (!shutting_down) {
-                if (spawn_worker_at_slot(slot) < 0) {
+                pid_t new_pid = spawn_worker_at_slot(slot);
+                if (new_pid < 0) {
                     perror("respawn worker failed");
                 } else {
-                    fprintf(stderr, "Respawned worker after pid %ld exited\n", (long)pid);
+                    fprintf(stderr,
+                            "Worker %ld exited -> Respawned child PID: %ld\n",
+                            (long)pid,
+                            (long)new_pid);
                 }
             }
         }

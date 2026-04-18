@@ -1,6 +1,8 @@
-# 🖥️ HTTP Server with Dynamic Content & Database (Assignment 3)
+# HTTP Server with Dynamic Content & Database (Assignment 3)
 
-## 📌 Overview
+Fereshteh Aghaarabi - A01426237
+
+##  Overview
 This project implements a simple HTTP/1.0 server in C that supports:
 
 - Serving static files (HTML, images, CSS, JS)
@@ -11,16 +13,16 @@ This project implements a simple HTTP/1.0 server in C that supports:
 
 ---
 
-## ⚙️ Features
+## Features
 
-### 🌐 HTTP Support
+### HTTP Support
 - **GET** → retrieve files
 - **HEAD** → retrieve headers only
 - **POST** → send data to server
 
 ---
 
-### 📁 Static File Serving
+### Static File Serving
 - Serves files from the `www/` directory
 - Supports:
     - `text/html`
@@ -31,26 +33,26 @@ This project implements a simple HTTP/1.0 server in C that supports:
 
 ---
 
-### 💾 Data Persistence
+### Data Persistence
 - Stores POST data in a **GDBM database**
 - Uses **unique keys** (timestamp + PID)
 
 ---
 
-### 🔒 Security
+### Security
 - Prevents directory traversal attacks (`..`)
 - Validates HTTP requests
 - Handles invalid input safely
 
 ---
 
-### ⚡ Concurrency
+###  Concurrency
 - Supports multiple clients simultaneously
 - Tested using parallel `curl` requests
 
 ---
 
-## 🗂️ Project Structure  
+## Project Structure  
 .
 ├── src/
 │ └── server.c
@@ -68,7 +70,7 @@ This project implements a simple HTTP/1.0 server in C that supports:
 
 ---
 
-## 🔧 Build Instructions and Run
+## Build Instructions and Run
 
 ```bash
 clang -Wall -Wextra -std=c11 -Iinclude src/server.c -o server_app -ldl
